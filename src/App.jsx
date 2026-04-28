@@ -6,7 +6,6 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { InspirationsPage } from './pages/InspirationsPage';
-import { ContactPage } from './pages/ContactPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { HiddenNav } from './components/HiddenNav';
 import { CustomCursor } from './components/CustomCursor';
@@ -33,7 +32,7 @@ export function App() {
           <Route path="/projects" element={<ProjectsPage t={t} lang={lang} />} />
           <Route path="/projects/:projectId" element={<ProjectDetailPage t={t} lang={lang} />} />
           <Route path="/inspirations" element={<InspirationsPage t={t} />} />
-          <Route path="/contact" element={<ContactPage t={t} lang={lang} />} />
+          <Route path="/contact" element={<Navigate to="/about" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
