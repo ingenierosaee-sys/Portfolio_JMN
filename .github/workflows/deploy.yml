@@ -34,6 +34,17 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy uploaded asset folders
+        run: |
+          mkdir -p dist/cv dist/media
+          if [ -d cv ]; then cp -r cv/. dist/cv/; fi
+          if [ -d about ]; then mkdir -p dist/media/about && cp -r about/. dist/media/about/; fi
+          if [ -d hero ]; then mkdir -p dist/media/hero && cp -r hero/. dist/media/hero/; fi
+          if [ -d logo ]; then mkdir -p dist/media/logo && cp -r logo/. dist/media/logo/; fi
+          if [ -d origin ]; then mkdir -p dist/media/origin && cp -r origin/. dist/media/origin/; fi
+          if [ -d projects ]; then mkdir -p dist/media/projects && cp -r projects/. dist/media/projects/; fi
+          if [ -d reference ]; then mkdir -p dist/media/reference && cp -r reference/. dist/media/reference/; fi
+
       - name: Prepare SPA fallback
         run: cp dist/index.html dist/404.html
 
