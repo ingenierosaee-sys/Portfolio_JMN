@@ -11,21 +11,26 @@ export function HiddenNav({ t, lang, setLang }) {
       if (e.clientX < 40) setOpen(true);
       if (e.clientX > 360) setOpen(false);
     };
+
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
   const links = [
     ['/', t.nav.home],
+    ['/inspirations', t.nav.inspirations],
     ['/about', t.nav.about],
     ['/projects', t.nav.projects],
-    ['/inspirations', t.nav.inspirations],
-    ['/contact', t.nav.contact],
   ];
 
   return (
     <>
-      <button className="edge-trigger" onFocus={() => setOpen(true)} onClick={() => setOpen((v) => !v)} aria-label="menu" />
+      <button
+        className="edge-trigger"
+        onFocus={() => setOpen(true)}
+        onClick={() => setOpen((value) => !value)}
+        aria-label={t.ui.menu}
+      />
       <AnimatePresence>
         {open && (
           <motion.aside
@@ -37,12 +42,17 @@ export function HiddenNav({ t, lang, setLang }) {
           >
             <nav>
               {links.map(([to, label]) => (
-                <Link key={to} to={to} className={location.pathname === to ? 'active' : ''} onClick={() => setOpen(false)}>
+                <Link
+                  key={to}
+                  to={to}
+                  className={location.pathname === to ? 'active' : ''}
+                  onClick={() => setOpen(false)}
+                >
                   {label}
                 </Link>
               ))}
             </nav>
-            <div className="lang-switch" role="group" aria-label="Language selector">
+            <div className="lang-switch" role="group" aria-label={t.ui.languageSelector}>
               <button className={lang === 'es' ? 'active' : ''} onClick={() => setLang('es')}>ES</button>
               <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
             </div>
